@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        /* @keyframes show {
+        @keyframes show {
             0% {
                 opacity: 0;
             }
@@ -17,7 +17,7 @@
             }
         }
 
-        @keyframes light {
+        /* @keyframes light {
             0% {
                 opacity: 0;
             }
@@ -53,9 +53,19 @@
             animation-fill-mode: forwards;
         } */
 
-        /* #myCanvas {
-            display: none;
-        } */
+        #myCanvas {
+            opacity: 0;
+            animation-name: show;
+            animation-duration: 1s;
+            animation-delay: 4s;
+            animation-fill-mode: forwards;
+        }
+
+        #myCanvas2 {
+            position: absolute;
+            top: 7.5px;
+            left: 7.5px;
+        }
     </style>
 </head>
 
@@ -66,7 +76,7 @@
     <div class="light">
         <img src="./light.png" alt="">
     </div> -->
-    <canvas id="myCanvas" width="600" height="600" style="display: none;"></canvas>
+    <canvas id="myCanvas" width="600" height="600"></canvas>
     <canvas id="myCanvas2"></canvas>
     <script src="https://pixijs.download/release/pixi.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/PixiPlugin.min.js"></script>

@@ -7,6 +7,7 @@ let app = new PIXI.Application({
 });
 
 gsap.registerPlugin(PixiPlugin);
+gsap.set('#myCanvas', { alpha: 0 });
 PixiPlugin.registerPIXI(PIXI);
 
 // let container = new PIXI.container();
@@ -16,7 +17,7 @@ PixiPlugin.registerPIXI(PIXI);
     var ctx = canvas.getContext('2d');
 
     var image = new Image();
-    image.src = './mario.png';
+    image.src = './aplus-logo.png';
 
     var pixels = [];  //儲存像素數據
     var newPixels = [];  //儲存像素數據
@@ -38,7 +39,7 @@ PixiPlugin.registerPIXI(PIXI);
         // ctx.getImageData(x, y, Width, Height);
         imageData = ctx.getImageData(0, 0, 600, 600);    //取得圖片像素資訊
         getPixels();    //取得所有像素
-        ctx.clearRect(0, 0, 600, 600);
+        // ctx.clearRect(0, 0, 600, 600);
         drawPic();  //繪製圖像
     };
 
@@ -55,8 +56,8 @@ PixiPlugin.registerPIXI(PIXI);
                 // if (data[pos] >= 0) {
                 // }
                 var pixel = {
-                    x: x + 40, //重新設置每個像素的位置
-                    y: y + 40, //重新設置每個像素的位置
+                    x: x, //重新設置每個像素的位置
+                    y: y, //重新設置每個像素的位置
                     fillStyle: getHexColor('rgb(' + data[pos] + ',' + (data[pos + 1]) + ',' + (data[pos + 2]) + ')'),
                     alpha: data[pos + 3]
                 }
@@ -79,29 +80,34 @@ PixiPlugin.registerPIXI(PIXI);
             cur_pixel = pixels[i];
             new_pixel = newPixels[i];
 
-            let graphics = new PIXI.Graphics();
-            graphics.beginFill(cur_pixel.fillStyle);
-            graphics.drawCircle(new_pixel.x, new_pixel.y, 1);
-            graphics.endFill();
-
-            app.stage.addChild(graphics);
-
-            gsap.set(graphics, { alpha: 0 })
-
             if (cur_pixel.alpha >= 127) {
-                gsap.to(graphics, {
-                    duration: 4,
-                    delay: 'random(1, 2)',
-                    ease: 'power3.out',
-                    x: cur_pixel.x - new_pixel.x,
-                    y: cur_pixel.y - new_pixel.y,
-                    alpha: 1
+                var graphics = new PIXI.Graphics();
+                graphics.beginFill(cur_pixel.fillStyle);
+                graphics.drawCircle(new_pixel.x, new_pixel.y, 1);
+                graphics.endFill();
+
+                app.stage.addChild(graphics);
+
+                gsap.set(graphics, { alpha: 0 });
+
+                var t = gsap.timeline({
+                    defaults: {
+                        duration: 1
+                    }
                 });
-                // gsap.to(graphics, {
-                //     delay: 5,
-                //     duration: 1,
-                //     alpha: 0
-                // });
+                t
+                    .to(graphics, {
+                        duration: 4,
+                        delay: 'random(0, 0.5)',
+                        ease: 'power2.out',
+                        x: cur_pixel.x - new_pixel.x,
+                        y: cur_pixel.y - new_pixel.y,
+                        alpha: 1
+                    })
+                    .to(graphics, {
+                        duration: 1,
+                        alpha: 0
+                    });
             }
         }
     }
