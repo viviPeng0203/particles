@@ -17,19 +17,19 @@
             }
         }
 
-        /* @keyframes light {
+        @keyframes light {
             0% {
                 opacity: 0;
             }
 
-            60% {
+            50% {
                 opacity: 1;
             }
 
             100% {
                 opacity: 0;
             }
-        } */
+        }
 
         /* .heart {
             position: absolute;
@@ -54,6 +54,7 @@
         } */
 
         #myCanvas {
+            position: relative;
             opacity: 0;
             animation-name: show;
             animation-duration: 1s;
@@ -63,8 +64,31 @@
 
         #myCanvas2 {
             position: absolute;
-            top: 7.5px;
-            left: 7.5px;
+            top: 0;
+            left: 0;
+        }
+
+        body {
+            position: relative;
+            margin: 0;
+            padding: 0;
+        }
+
+        body:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 600px;
+            height: 600px;
+            background-image: url(./aplus-logo-light.png);
+            background-repeat: no-repeat;
+            opacity: 0;
+            animation-name: light;
+            animation-duration: 1.2s;
+            animation-delay: 3.8s;
+            animation-fill-mode: forwards;
+            animation-timing-function: ease-in-out;
         }
     </style>
 </head>
