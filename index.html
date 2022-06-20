@@ -7,59 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        @keyframes show {
-            0% {
-                opacity: 0;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
-
-        @keyframes light {
-            0% {
-                opacity: 0;
-            }
-
-            50% {
-                opacity: 1;
-            }
-
-            100% {
-                opacity: 0;
-            }
-        }
-
-        /* .heart {
-            position: absolute;
-            top: 48px;
-            left: 48px;
-            opacity: 0;
-            animation-name: show;
-            animation-duration: 0.5s;
-            animation-delay: 5s;
-            animation-fill-mode: forwards;
-        }
-
-        .light {
-            position: absolute;
-            top: 48px;
-            left: 48px;
-            opacity: 0;
-            animation-name: light;
-            animation-duration: 1.5s;
-            animation-delay: 4.5s;
-            animation-fill-mode: forwards;
-        } */
-
         #myCanvas {
             position: relative;
             opacity: 0;
-            animation-name: show;
-            animation-duration: 1s;
-            animation-delay: 4s;
-            animation-fill-mode: forwards;
         }
 
         #myCanvas2 {
@@ -74,7 +24,7 @@
             padding: 0;
         }
 
-        body:after {
+        .light {
             content: '';
             position: absolute;
             top: 0;
@@ -84,22 +34,12 @@
             background-image: url(./aplus-logo-light.png);
             background-repeat: no-repeat;
             opacity: 0;
-            animation-name: light;
-            animation-duration: 1.2s;
-            animation-delay: 3.8s;
-            animation-fill-mode: forwards;
-            animation-timing-function: ease-in-out;
         }
     </style>
 </head>
 
 <body>
-    <!-- <div class="heart">
-        <img src="./r90-g150-b210-a1.png" alt="">
-    </div>
-    <div class="light">
-        <img src="./light.png" alt="">
-    </div> -->
+    <div class="light"></div>
     <canvas id="myCanvas" width="600" height="600"></canvas>
     <canvas id="myCanvas2"></canvas>
     <script src="https://pixijs.download/release/pixi.js"></script>

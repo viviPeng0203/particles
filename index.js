@@ -110,6 +110,28 @@ PixiPlugin.registerPIXI(PIXI);
                     });
             }
         }
+
+        var t2 = gsap.timeline({
+            defaults: {
+                duration: 1.2
+            }
+        });
+
+        t2
+            .to('.light', {
+                duration: 0.6,
+                delay: 3.8,
+                alpha: 1
+            })
+            .to('.light', {
+                duration: 0.6,
+                alpha: 0
+            })
+            .to('#myCanvas', {
+                duration: 1,
+                delay: -1.2,
+                alpha: 1
+            });
     }
 
     function getHexColor(color) {
